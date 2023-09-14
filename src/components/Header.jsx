@@ -1,6 +1,7 @@
 import { BsFillCloudsFill } from "react-icons/bs";
+import PropTypes from "prop-types";
 
-const Header = () => {
+const Header = ({ isFarenheit, toggleIsFarenheit, handleSubmit }) => {
   return (
     <header className="bg-slate-800 py-5">
       <div className="header">
@@ -8,25 +9,32 @@ const Header = () => {
           <BsFillCloudsFill className="mr-2" />
           React Weather App
         </span>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
             placeholder="Location"
             className="locationInput"
+            name="locationInput"
           />
-          <button
-            className="rounded-r-lg bg-orange-600 px-3 py-3 tracking-wide text-white"
-            type="submit"
-          >
+          <button className="locationButton" type="submit">
             Search
           </button>
         </form>
-        <div className="rounded-lg bg-white px-8 py-2">
-          <span>&deg;F</span> / <span>&deg;C</span>
-        </div>
+        <button
+          className="rounded-lg bg-white px-8 py-2 font-bold"
+          onClick={toggleIsFarenheit}
+        >
+          &deg;{isFarenheit ? "F" : "C"}
+        </button>
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  isFarenheit: PropTypes.bool,
+  toggleIsFarenheit: PropTypes.func,
+  handleSubmit: PropTypes.func,
 };
 
 export default Header;
