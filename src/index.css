@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  @apply container mx-auto flex flex-col items-center space-y-3 md:space-x-0 lg:flex-row lg:space-x-10 lg:space-y-0;
+}
+
+.locationInput {
+  @apply rounded-l-lg border-none p-3 md:pr-40 lg:pr-20 xl:pr-56;
+}
