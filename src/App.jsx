@@ -27,6 +27,7 @@ const App = () => {
         })
         .catch((err) => {
           setError(err);
+          setWeatherData(null);
         })
         .finally(() => {
           setLoading(false);
@@ -38,17 +39,20 @@ const App = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.cod >= 400) {
-            setError(data.message + " Please fix location");
+            setError("Please fix location");
+            setWeatherData(null);
           } else {
             const { name, lat, lon } = data[0];
             getWeatherData(name, lat, lon);
+            setError("");
           }
         })
-        .catch((err) => {
-          setError(err.message);
+        .catch(() => {
+          setError("Please fix location");
+          setWeatherData(null);
         })
         .finally(() => {
-          setLoading(false);
+          setLoading(true);
         });
     }
 
@@ -62,6 +66,8 @@ const App = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setLocation(e.target.locationInput.value.trim());
+    setError("");
+    setLoading(true);
   };
 
   return (
