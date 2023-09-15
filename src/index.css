@@ -9,3 +9,7 @@
 .locationInput {
   @apply rounded-l-lg border-none p-3 md:pr-40 lg:pr-20 xl:pr-56;
 }
+
+.locationButton {
+  @apply rounded-r-lg bg-orange-600 p-3 tracking-wide text-white;
+}
