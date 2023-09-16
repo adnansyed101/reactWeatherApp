@@ -15,9 +15,21 @@
 }
 
 .showWeather {
-  @apply container mx-auto w-full md:flex ;
+  @apply container mx-auto w-full md:flex;
 }
 
 .card {
-  @apply my-4 flex flex-col items-center px-10 lg:w-2/4
+  @apply my-4 flex flex-col items-center px-10 lg:w-2/4;
+}
+
+.todayData {
+  @apply container mx-auto grid grid-cols-2 grid-rows-3 items-center justify-center gap-2 px-5 py-5 lg:grid-cols-5 lg:grid-rows-2;
+}
+
+.todayData .title {
+  @apply text-center text-xl text-slate-400;
+}
+
+.todayData .subtitle {
+  @apply text-center text-xl text-slate-200;
 }
