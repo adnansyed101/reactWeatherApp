@@ -12,7 +12,7 @@ const Header = ({ isFarenheit, toggleIsFarenheit, handleSubmit }) => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
-            placeholder="Location"
+            placeholder="Enter City"
             className="locationInput"
             name="locationInput"
           />
