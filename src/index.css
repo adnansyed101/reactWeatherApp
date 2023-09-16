@@ -13,3 +13,11 @@
 .locationButton {
   @apply rounded-r-lg bg-orange-600 p-3 tracking-wide text-white;
 }
+
+.showWeather {
+  @apply container mx-auto w-full md:flex ;
+}
+
+.card {
+  @apply my-4 flex flex-col items-center px-10 lg:w-2/4
+}
