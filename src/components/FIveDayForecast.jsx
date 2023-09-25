@@ -12,8 +12,6 @@ const FiveDayForecast = ({ data, isFarenheit }) => {
     }
   });
 
-  console.log(fiveDaysForecast);
-
   const fiveDayWeatherElement = fiveDaysForecast.map((item, index) => {
     return (
       <tr key={index} className="border-b-2 border-slate-300">
