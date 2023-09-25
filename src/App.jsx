@@ -14,10 +14,10 @@ const App = () => {
   const API_KEY = "9ee2353a7a9004a8d0d3701c47840223";
 
   useEffect(() => {
-    const GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`;
+    const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`;
 
     function getWeatherData(latitude, longitude) {
-      const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
+      const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
 
       fetch(WEATHER_API_URL, { mode: "cors" })
         .then((res) => res.json())
