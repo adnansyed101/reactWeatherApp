@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import ShowWeather from "./components/ShowWeather";
+import TodayData from "./components/TodayData";
+import FiveDayForecast from "./components/FIveDayForecast";
 
 const App = () => {
   const [isFarenheit, setIsFarenheit] = useState(true);
@@ -13,8 +16,8 @@ const App = () => {
   useEffect(() => {
     const GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`;
 
-    function getWeatherData(name, latitude, longitude) {
-      const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+    function getWeatherData(latitude, longitude) {
+      const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
 
       fetch(WEATHER_API_URL, { mode: "cors" })
         .then((res) => res.json())
@@ -39,12 +42,12 @@ const App = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.cod >= 400) {
-            setError("Please fix location");
+            setError("Please fix location or try again later.");
             setWeatherData(null);
           } else {
-            const { name, lat, lon } = data[0];
-            getWeatherData(name, lat, lon);
-            setError("");
+            const { lat, lon } = data[0];
+            getWeatherData(lat, lon);
+            setError(null);
           }
         })
         .catch(() => {
@@ -66,8 +69,7 @@ const App = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setLocation(e.target.locationInput.value.trim());
-    setError("");
-    setLoading(true);
+    setError(null);
   };
 
   return (
@@ -77,8 +79,15 @@ const App = () => {
         toggleIsFarenheit={toggleIsFarenheit}
         handleSubmit={onSubmit}
       />
-      {loading && <p>Loading....</p>}
-      {error && <p>{error}</p>}
+      {loading && <h1 className="text-center text-3xl">Loading...</h1>}
+      {error && <p className="text-center">{error}</p>}
+      {weatherData && (
+        <>
+          <ShowWeather data={weatherData} isFarenheit={isFarenheit} />
+          <TodayData data={weatherData} isFarenheit={isFarenheit} />
+          <FiveDayForecast data={weatherData} isFarenheit={isFarenheit} />
+        </>
+      )}
     </div>
   );
 };
